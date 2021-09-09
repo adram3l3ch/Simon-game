@@ -1,4 +1,34 @@
-# Getting Started with Create React App
+# FCC - Simon Game
+
+This is a solution to the [Simon game project in the take home projects by Freecodecamp](https://www.freecodecamp.org/learn/coding-interview-prep/take-home-projects/build-a-simon-game).
+
+### The challenge
+
+Users should be able to:
+
+-   presented with a random series of button presses.
+-   Each time user input a series of button presses correctly, can see the same series of button presses but with an additional step.
+-   hear a sound that corresponds to each button both when the series of button presses plays, and when the user personally press a button.
+-   If user press the wrong button, will be notified that user has done so, and that series of button presses starts again to remind of the pattern so user can try again.
+-   see how many steps are in the current series of button presses.
+-   If want to restart, can hit a button to do so, and the game will return to a single step.
+-   play in strict mode where if get a button press wrong, it notifies that user has done so, and the game restarts at a new random series of button presses.
+-   win the game by getting a series of 20 steps correct. will be notified about the victory, then the game starts over.
+
+### Links
+
+-   Solution URL: [Github](https://github.com/adram3l3ch/Simon-game)
+-   Live Site URL: [Netlify](https://adramelech-simon-game.netlify.app/)
+
+### Built with
+
+-   Semantic HTML5 markup
+-   CSS custom properties
+-   Flexbox
+-   CSS Grid
+-   [React](https://reactjs.org/) - JS library
+
+## Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 

@@ -116,6 +116,7 @@ const ContextProvider = ({ children }) => {
 			intervalRef.current = setInterval(checkMatch, count * 800 + 8000);
 		}
 		return () => clearInterval(intervalRef.current);
+		// eslint-disable-next-line
 	}, [melody]);
 
 	// -----------------------------run on user input--------------------
@@ -126,6 +127,7 @@ const ContextProvider = ({ children }) => {
 		if (userMelody.length) {
 			checkMatchOnUserInput();
 		}
+		// eslint-disable-next-line
 	}, [userMelody]);
 
 	useEffect(() => {
@@ -144,6 +146,7 @@ const ContextProvider = ({ children }) => {
 			}
 		}
 		return () => clearTimeout(playMusicTimeoutRef.current);
+		// eslint-disable-next-line
 	}, [error]);
 
 	useEffect(() => {

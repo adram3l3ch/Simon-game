@@ -11,7 +11,7 @@ const StartButton = () => {
 
 	return (
 		<div className="buttons">
-			<div class="top-btns">
+			<div className="top-btns">
 				<div className="start-btn" onClick={startGame}>
 					<button className="btn" title="start"></button>
 					<p>START</p>
