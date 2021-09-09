@@ -13,7 +13,7 @@ const StartButton = () => {
 		<div className="buttons">
 			<div class="top-btns">
 				<div className="start-btn" onClick={startGame}>
-					<div className="btn"></div>
+					<button className="btn" title="start"></button>
 					<p>START</p>
 				</div>
 				<div
@@ -22,7 +22,7 @@ const StartButton = () => {
 					}
 					onClick={() => setIsStrictMode((val) => !val)}
 				>
-					<div className="btn"></div>
+					<button className="btn" title="strict mode"></button>
 					<p>STRICT</p>
 				</div>
 			</div>
@@ -31,7 +31,7 @@ const StartButton = () => {
 				onClick={() => setIsPowerOn((val) => !val)}
 			>
 				<p>OFF</p>
-				<div className="toggle"></div>
+				<button className="toggle"></button>
 				<p>ON</p>
 			</div>
 		</div>

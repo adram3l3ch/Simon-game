@@ -17,11 +17,14 @@ const ContextProvider = ({ children }) => {
 	const [isPowerOn, setIsPowerOn] = useState(false);
 	const [active, setActive] = useState(null);
 	const [isStrictMode, setIsStrictMode] = useState(false);
+	const [reset, setReset] = useState(true);
 	const [won, setWon] = useState(false);
 	const playMusicTimeoutRef = useRef(playMusicTimeout);
 	const aRef = useRef(a);
 	const intervalRef = useRef(interval);
 	const timeoutRef = useRef(timeout);
+
+	// -------------------------------functions------------------------------
 
 	const playMusic = (num = 0) => {
 		setUserTurn(false);
@@ -62,8 +65,6 @@ const ContextProvider = ({ children }) => {
 			setUserMelody([]);
 		} else {
 			setError(true);
-			setUserMelody([]);
-			playMusic();
 		}
 	};
 
@@ -79,38 +80,21 @@ const ContextProvider = ({ children }) => {
 
 	const startGame = () => {
 		if (isPowerOn) {
-			setCount((count) => 1);
+			setCount(1);
 			setUserMelody([]);
 			setMelody([]);
 		}
 	};
 
-	useEffect(() => {
-		if (error) {
-			clearInterval(intervalRef.current);
-			if (isStrictMode) {
-				setCount(1);
-				setUserMelody([]);
-				setMelody([]);
-			} else {
-				setUserMelody([]);
-			}
-			playMusicTimeoutRef.current = setTimeout(playMusic, 2000);
-			intervalRef.current = setInterval(checkMatch, count * 800 + 8000);
-		}
-		return () => clearTimeout(playMusicTimeoutRef.current);
-	}, [error]);
+	// -------------------------------functions end------------------------------
 
-	useEffect(() => {
-		if (typeof count == "number") {
-			playMusic();
-			intervalRef.current = setInterval(checkMatch, count * 800 + 8000);
-		}
-		return () => clearInterval(intervalRef.current);
-	}, [melody]);
+	// ----------------------------------useEffects--------------------------------
 
+	// ------------------ when the start btn is pressed the count will set to 1 and this useeffect will run ----------------------------------
+
+	// ---------------------push melody will be triggered -------------------------------
 	useEffect(() => {
-		if (typeof count == "number") {
+		if (typeof count === "number") {
 			if (count === 21) {
 				setWon(true);
 			} else {
@@ -118,7 +102,49 @@ const ContextProvider = ({ children }) => {
 			}
 		}
 		return () => clearTimeout(aRef.current);
-	}, [count]);
+	}, [count, reset]);
+
+	// ------------------------melody changed-------------------------------
+
+	// --------------------playMusic will be triggered--------------------------
+
+	// -------------will wait for the user input and trigger checkMatch-----------------
+
+	useEffect(() => {
+		if (melody.length) {
+			playMusic();
+			intervalRef.current = setInterval(checkMatch, count * 800 + 8000);
+		}
+		return () => clearInterval(intervalRef.current);
+	}, [melody]);
+
+	// -----------------------------run on user input--------------------
+
+	// ----------------------trigger checkMatchOnUserInput to check whether the user inputs are correct ------------------------
+
+	useEffect(() => {
+		if (userMelody.length) {
+			checkMatchOnUserInput();
+		}
+	}, [userMelody]);
+
+	useEffect(() => {
+		if (error) {
+			clearInterval(intervalRef.current);
+			if (isStrictMode) {
+				startGame();
+				setReset(!reset);
+			} else {
+				setUserMelody([]);
+				playMusicTimeoutRef.current = setTimeout(playMusic, 2000);
+				intervalRef.current = setInterval(
+					checkMatch,
+					count * 800 + 8000
+				);
+			}
+		}
+		return () => clearTimeout(playMusicTimeoutRef.current);
+	}, [error]);
 
 	useEffect(() => {
 		if (won) {
@@ -131,12 +157,6 @@ const ContextProvider = ({ children }) => {
 			setTimeout(() => setWon(false), 2000);
 		}
 	}, [won]);
-
-	useEffect(() => {
-		if (typeof count == "number" && userMelody.length > 0) {
-			checkMatchOnUserInput();
-		}
-	}, [userMelody]);
 
 	useEffect(() => {
 		if (!isPowerOn) {

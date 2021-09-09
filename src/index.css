@@ -44,7 +44,7 @@
 	letter-spacing: 0.1em;
 	font-size: 1rem;
 	background: #333333;
-	box-shadow: 0px 0px 5px inset black;
+	box-shadow: 0px 0px 5px 2px inset black;
 }
 
 .top {
@@ -55,6 +55,11 @@
 	place-items: center;
 	background: #333333;
 	border-radius: 50%;
+}
+
+button {
+	border: none;
+	outline: none;
 }
 
 .music-button {
