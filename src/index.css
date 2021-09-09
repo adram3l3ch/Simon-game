@@ -1,13 +1,230 @@
-body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+@import url("https://fonts.googleapis.com/css2?family=Rubik:wght@300;500&display=swap");
+
+*,
+*::after,
+*::before {
+	margin: 0;
+	box-sizing: border-box;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+.app {
+	height: 100vh;
+	min-height: 700px;
+	display: grid;
+	place-items: center;
+	font-family: "Rubik", sans-serif;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+	position: relative;
+}
+
+.center-circle {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	width: 250px;
+	height: 250px;
+	background: white;
+	padding: 20px;
+	border-radius: 50%;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+	align-items: center;
+	border: 20px solid #333333;
+	transform: translate(-50%, -50%);
+}
+
+.display {
+	width: 80%;
+	height: 40px;
+	padding: 0.75em;
+	text-align: center;
+	color: white;
+	letter-spacing: 0.1em;
+	font-size: 1rem;
+	background: #333333;
+	box-shadow: 0px 0px 5px inset black;
+}
+
+.top {
+	position: relative;
+	width: 500px;
+	height: 500px;
+	display: grid;
+	place-items: center;
+	background: #333333;
+	border-radius: 50%;
+}
+
+.music-button {
+	width: 210px;
+	height: 210px;
+	background: red;
+}
+
+.active#two {
+	background: #ff1924;
+}
+
+.active#one {
+	background: #00ff6e;
+}
+
+.active#three {
+	background: #ffce0a;
+}
+
+.active#four {
+	background: #1188ff;
+}
+
+.music-buttons {
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+	grid-template-rows: 1fr 1fr;
+	grid-gap: 20px;
+	width: max-content;
+}
+
+#one {
+	border-top-left-radius: 100%;
+	grid-column: 1/2;
+	grid-row: 1/2;
+	background: #00a74a;
+}
+
+#two {
+	border-top-right-radius: 100%;
+	grid-column: 2/3;
+	grid-row: 1/2;
+	background: #9f0f17;
+}
+
+#three {
+	border-bottom-left-radius: 100%;
+	grid-column: 1/2;
+	grid-row: 2/3;
+	background: #cca707;
+}
+
+#four {
+	border-bottom-right-radius: 100%;
+	grid-column: 2/3;
+	grid-row: 2/3;
+	background: #094a8f;
+}
+
+.buttons {
+	font-size: 0.7rem;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+
+.btn {
+	width: 20px;
+	height: 20px;
+	border-radius: 50%;
+	border: 3px solid #333333;
+	margin-bottom: 5px;
+}
+
+.start-btn .btn {
+	background: red;
+}
+
+.strict-btn .btn {
+	background: green;
+}
+
+.active.strict-btn .btn {
+	background: red;
+}
+
+.top-btns {
+	width: 120px;
+	display: flex;
+	justify-content: space-between;
+}
+
+.start-btn,
+.strict-btn {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+
+.power-btn {
+	display: flex;
+	margin-top: 10px;
+	align-items: center;
+}
+
+.toggle {
+	width: 50px;
+	height: 25px;
+	background: #333;
+	position: relative;
+	margin: 0 5px;
+	border-radius: 5%;
+}
+
+.toggle::before {
+	content: "";
+	position: absolute;
+	inset: 10% 50% 10% 5%;
+	background: red;
+	transition: all 0.2s ease-in;
+}
+
+.active .toggle::before {
+	inset: 10% 5% 10% 50%;
+}
+
+.victory {
+	position: absolute;
+	inset: 0;
+	background: rgba(0, 0, 0, 0.7);
+	color: white;
+	display: grid;
+	place-items: center;
+	font-size: 3em;
+}
+
+.victory h2 {
+	background: red;
+	padding: 0.5em 1em;
+	border-radius: 10px;
+}
+
+@media (max-width: 550px) {
+	body {
+		font-size: 14px;
+	}
+	.top {
+		width: 370px;
+		height: 370px;
+	}
+	.music-button {
+		width: 150px;
+		height: 150px;
+	}
+	.center-circle {
+		width: 200px;
+		height: 200px;
+		padding: 10px;
+	}
+	.display {
+		height: 30px;
+		padding: 5px 10px;
+	}
+	.btn {
+		width: 15px;
+		height: 15px;
+	}
+	.toggle {
+		width: 30px;
+		height: 15px;
+	}
 }
